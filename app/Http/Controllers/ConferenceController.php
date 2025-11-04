@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Conference;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ConferenceController extends Controller
 {
@@ -12,7 +13,9 @@ class ConferenceController extends Controller
      */
     public function index()
     {
-        //
+        return view("conferences.index", [
+            "conferences" => Conference::all()
+        ]);
     }
 
     /**

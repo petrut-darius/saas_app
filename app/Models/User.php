@@ -7,11 +7,13 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use App\Models\Talk;
+use App\Models\Conference;
+use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
-    use HasFactory, Notifiable;
+    use HasApiTokens, HasFactory, Notifiable;
 
     /**
      * The attributes that are mass assignable.
@@ -22,6 +24,9 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        "github_id",
+        "github_token",
+        "github_refresh_token"
     ];
 
     /**
@@ -49,5 +54,9 @@ class User extends Authenticatable
 
     public function talks() {
         return $this->hasMany(Talk::class);
+    }
+
+    public function favoritedConferences() {
+        return $this->belongsToMany(Conference::class, "favorites");
     }
 }

@@ -23,8 +23,9 @@ class DatabaseSeeder extends Seeder
         User::factory()
         ->has(Talk::factory(5))    
         ->create([
-            'name' => 'Petrut Darius',
-            'email' => 'eminoviciidarius@gmail.com',
+            'name' => 'Alexandra Sorlea',
+            'email' => 'sorlea_alexandra@gmail.com',
+            "password" => bcrypt("30ianpdi")
         ]);
 
         Conference::factory(5)->create();
